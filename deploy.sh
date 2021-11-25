@@ -2,7 +2,7 @@
 
 export REPO=rpolnx
 export PROJECT_REPONAME=docker-nest-cache
-export LATEST_TAG=$(git rev-parse HEAD)
+export LATEST_TAG=latest
 export IMAGE_TAG=$(git rev-parse HEAD)
 
 export DOCKER_BUILDKIT=1 
@@ -19,6 +19,7 @@ docker build --progress=plain \
                          -f ci.dockerfile \
                          --target final \
                          -t $REPO/$PROJECT_REPONAME:$IMAGE_TAG \
+                         -t $REPO/$PROJECT_REPONAME:$LATEST_TAG \
                          --build-arg BUILDKIT_INLINE_CACHE=1 .
 
 docker push $REPO/$PROJECT_REPONAME --all-tags
