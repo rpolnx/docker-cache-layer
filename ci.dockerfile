@@ -7,7 +7,7 @@ COPY package* .
 COPY yarn* .
 
 RUN yarn install --frozen-lockfile --inline-builds
-RUN yarn install --frozen-lockfile --inline-builds --modules-folder node-modules-production
+RUN yarn install --frozen-lockfile --production --inline-builds --modules-folder node-modules-production
 COPY . .
 RUN yarn prebuild && yarn build
 
@@ -34,4 +34,4 @@ COPY --chown=1001:1001 --from=builder /usr/app/node-modules-production ./node-mo
 COPY --chown=1001:1001 package.json .
 COPY --chown=1001:1001 --from=builder /usr/app/dist ./dist
 
-CMD [ "npm run start:prod" ]
+CMD [ "npm", "run", "start:prod" ]
