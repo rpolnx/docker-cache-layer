@@ -30,7 +30,7 @@ RUN groupadd -g 1001 $GROUP && \
 
 USER $USER
 
-COPY --chown=1001:1001 --from=builder /usr/app/node-modules-production ./node-modules
+COPY --chown=1001:1001 --from=builder /usr/app/node-modules-production ./node_modules
 COPY --chown=1001:1001 package.json .
 COPY --chown=1001:1001 --from=builder /usr/app/dist ./dist
 
